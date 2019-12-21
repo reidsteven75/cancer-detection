@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "sound-gen",
+  "private_key_id": "7778ea167270a26325dfb4fe436043af629a85f1",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC49uYHOBrNnsfa\nKD2B9F3Mmq1RnQ0v48h6aeAsKrtMWl4zqqA3aK7aYZeMuBcFzagxo+4uBaqRtS2J\nPjoPi95OjwPW2/VI9pLrgbCmRxKS6UhBO5QLHxaOOsIMpknWPiGePfxNHzAyXqsP\nWJO58sjjd5xzXUsShzCWRVGJjLBx7vkFupThBlnxT6fe4y1To6EmodpefoSwoov2\nMjlB5lADXoUBL1ruO+ZEhZG/rBLk09MXIuonO07QmVFJo53qmtzCf7S37+w5v2af\nF05+/clXKlJx00ssHb3sRxTGqg+YU3rQWXK+f+Qdn44rUIurttmBjlIpiG4z6N1n\nCE0oiEqrAgMBAAECggEAFGWNqkAinIgk68bCOaFz8osgD77s5FoPEoi4YsZ3jwzs\nFHB9aH7PwV8/shHe4BH0uTylmEehrp23HspQ5sP6yNj2iGwLGXevbe8IRt3Ri4fU\nIvVp9uv/tcF/ApwXyltho6ycNPj6fKN546BV8gx24Lag9wvTqoBj+D4+ppdwIbAT\nQCx1cS6cjnPCe8jyuI1Q+17gh22oQXpYTjhuQg6ZGXyJ4do6jfk+sEn4hy1EiHdq\n9Gj/y/ZNQST8FQC7qgtItQvZrMLMO6ZgakutuIwF7DdfCehmLrvcZd/5OwvM65Cz\nuZX9V3h5T5lFCTjKX3bGXcD9KnyjaMymuwHAE+Z44QKBgQD21VIqI9wWZz7L/7XI\npmxJYFoTqwiAiE0yYHX4ev+345MMBV5/hc9bxH+ci4GYzxDuLwKSf3lLF1/h1Y0x\ndu4szaWoaKiZfZxeosVYo8KpiV6uVaYZgXzZy3zz6HsG9wqJxOMKEN6SKwcdMFMt\nNV2RdjPxtr9RVp68ifFRRkSEkQKBgQC/1WG8VIZEEYLZ+Z9vvwhRaNcZnWLUDHhI\nz1eQkStqP7AmC5M1BS03l45XfyCs0duRok9OO/aJ7KZRGL0rkLkYFmmpY0aUW3to\nmFGI41oRKnNt8FfW+sne3AVZ9/hpvwSZ0ucOQ15X7ndDX7zzDTV5ng+1YA3NE7Jb\n0bO5+XuJewKBgBD4lc+j64v2yVCJYlxLZQKeh1L23XzI4lXmX/YXruFb2k5nSBoI\nfztWBVgkF2MESau2u7yK2zIYh1Uls7GE9ddKxGsR1xXGlyvCkUMI72dstH/UD7mN\nN6JZ5Vt3zo2qCqVyThHxGvx9zN1q5y0ikC5iLCwgXoMfK4bXDSqDZE6hAoGAdR0G\nH/3SQngWVJDKv2P25gyFVUP6c85xGLJMmRunT6Q2G+PxKOtSIaBK7CvWfOtZit12\nYSLGbomlN9lMk+40sfns49aR3jzDaKWlEVcLQ3ORKMsUNVDCMWZNdhGm/Jf7bRWO\nrex/CluxP9aQ+ilUPj07BdXwVwTxXJD3klA3FUUCgYEAv2Jy7IR7oueZOTDPk3iB\nP/d4gLQoAkGezvtT4Pd4PgTNinWU552jAtg5AcMnVT07nsgFgIW/r1tE6zkVCLFJ\nd0BetTPGDFFwLpVV/Ml2p5E3UJArSOFmMNqpepUIp34kH3bp9aKriTLaAISIgZ6a\nRvn/1t+F++3c/w2V4wd/wMA=\n-----END PRIVATE KEY-----\n",
+  "client_email": "sound-gen-api-service@sound-gen.iam.gserviceaccount.com",
+  "client_id": "110633500360367878394",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sound-gen-api-service%40sound-gen.iam.gserviceaccount.com"
+}

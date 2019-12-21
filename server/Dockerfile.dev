@@ -1,0 +1,15 @@
+FROM node:12-slim
+
+WORKDIR /code
+
+COPY package*.json /code/
+RUN npm install
+
+COPY . /code
+
+# ---------------------------------
+# - UNCOMMENT IF LOCAL MONGO USED -
+# ---------------------------------
+# Wait until db is ready
+# ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.5.0/wait /wait
+# RUN chmod +x /wait
