@@ -16,13 +16,17 @@ const style = {
 	}
 }
 
-class Dashboard extends Component {
+class Viewer extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
 			loading: true,
 		}
+	}
+
+	componentDidMount() {
+		this.setState({loading:false})
 	}
 
   render() {
@@ -50,4 +54,4 @@ class Dashboard extends Component {
 export default withRouter(compose(
   withStyles(style),
   withWidth(),
-)(Dashboard))
+)(Viewer))
