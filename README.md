@@ -3,7 +3,6 @@ Init
 ```
 $ ./init.sh
 ```
-- install Google Cloud SDK: https://cloud.google.com/sdk/docs/downloads-interactive#mac
 
 Dev
 ----------------

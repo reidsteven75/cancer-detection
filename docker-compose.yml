@@ -1,6 +1,6 @@
 version: '3'
 networks:
-  sound_network:
+  cancer_network:
     driver: bridge
 services:
 
@@ -14,11 +14,9 @@ services:
       - ./client:/code
       - /code/node_modules
     networks:
-      - sound_network
+      - cancer_network
     ports:
       - "${CLIENT_PORT}:${CLIENT_PORT}"
-    # expose:
-    #   - "${CLIENT_PORT}"
     command: sh -c "npm run dev"
 
   server:
@@ -31,28 +29,10 @@ services:
       - ./server:/code
       - /code/node_modules
     networks:
-      sound_network:
+      cancer_network:
         aliases:
           - ${HOST_ALIAS}
     ports:
       - "${SERVER_PORT}:${SERVER_PORT}"
-    # expose:
-    #   - "${SERVER_PORT}"
-    environment:
-      WAIT_HOSTS: mongodb:${MONGO_PORT}
-    command: sh -c "export GOOGLE_APPLICATION_CREDENTIALS=google-storage-auth.json; npm run dev"
-    # depends_on:
-    #   - mongodb
-    # command: sh -c "/wait && npm run dev"
+    command: sh -c "npm run dev"
   
-  # mongodb:
-  #   hostname: mongodb
-  #   env_file: .env
-  #   image: mongo
-  #   restart: always
-  #   networks:
-  #     - sound_network
-  #   logging:
-  #     driver: none
-  #   ports:
-  #     - ${MONGO_PORT}:${MONGO_PORT}

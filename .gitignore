@@ -8,5 +8,12 @@
 node_modules/
 client/node_modules
 
+
 #OSX hidden metadata file
 .DS_Store
+
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch server/google-storage-auth.json" \
+  --prune-empty --tag-name-filter cat -- --all
+  > Rewrite 48dc599c80e20527ed902928085e7861e6b3cbe6 (266/266)
+  > Ref 'refs/heads/master' was rewritten
