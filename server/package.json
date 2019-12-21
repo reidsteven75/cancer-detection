@@ -1,7 +1,7 @@
 {
   "name": "cancer-detection-server",
   "version": "0.0.1",
-  "description": "",
+  "description": "detecting cancer early and predicting likely outcomes",
   "repository": "https://github.com/reidsteven75/cancer-detection",
   "main": "server.js",
   "scripts": {

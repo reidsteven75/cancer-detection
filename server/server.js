@@ -17,7 +17,7 @@ const HTTPS = (process.env.HTTPS === 'true')
 // const HOST = (HTTPS ? 'https://' : 'http://') + process.env.HOST
 const SERVER_PORT = process.env.SERVER_PORT || process.env.PORT
 const API_ROUTE = '/api'
-const CLIENT_ROUTE = '/app'
+const CLIENT_ROUTE = ''
 const CLIENT_PATH = 'build/client'
 
 const config = {
@@ -74,7 +74,7 @@ app.use(function(req, res, next) {
   next();
 })
 
-app.get(API_ROUTE + '/test', (req, res) => {
+app.get(API_ROUTE + '/status', (req, res) => {
 	res.send({test:'works!'})
 })
 

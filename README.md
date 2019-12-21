@@ -42,6 +42,10 @@ Logs
 $ heroku logs -t -a cancer-detection-prod
 ```
 
+Favicons
+--------
+https://favicon.io/favicon-converter/
+
 Node Modules
 ------------
 - install & uninstalls should be done locally
