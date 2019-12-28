@@ -52,8 +52,8 @@ module.exports = {
 				'NODE_ENV':       JSON.stringify(process.env.NODE_ENV),
 				'HTTPS':       		JSON.stringify(process.env.HTTPS),
         'HOST': 					JSON.stringify(process.env.HOST),
-				'SERVER_PORT': 		JSON.stringify(process.env.SERVER_PORT),
-        'CLIENT_PORT':    JSON.stringify(process.env.CLIENT_PORT)
+				'API_PORT': 		  JSON.stringify(process.env.API_PORT),
+        'WEB_APP_PORT':   JSON.stringify(process.env.WEB_APP_PORT)
       }
 		}),
 		

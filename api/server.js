@@ -14,11 +14,11 @@ const moment = require('moment')
 
 const ENVIRONMENT = process.env.NODE_ENV || 'development'
 const HTTPS = (process.env.HTTPS === 'true')
-// const HOST = (HTTPS ? 'https://' : 'http://') + process.env.HOST
-const SERVER_PORT = process.env.SERVER_PORT || process.env.PORT
+const HOST = (HTTPS ? 'https://' : 'http://') + process.env.HOST
+const API_PORT = process.env.API_PORT || process.env.PORT
 const API_ROUTE = '/api'
-const CLIENT_ROUTE = ''
-const CLIENT_PATH = 'build/client'
+const WEB_APP_ROUTE = ''
+const WEB_APP_PATH = 'build/web-app'
 
 const config = {
 
@@ -66,7 +66,7 @@ const logRequests = (req, res, next) => {
 app.use(logRequests)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.static(CLIENT_PATH))
+app.use(express.static(WEB_APP_PATH))
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -80,15 +80,14 @@ app.get(API_ROUTE + '/status', (req, res) => {
 
 // client
 // ------
-app.get(CLIENT_ROUTE, (req, res) => {
-	res.sendFile(path.resolve(path.join(CLIENT_PATH), 'index.html'))
+app.get(WEB_APP_ROUTE, (req, res) => {
+	res.sendFile(path.resolve(path.join(WEB_APP_PATH), 'index.html'))
 })
 
-server.listen(SERVER_PORT, () => {
-	logger.info('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-	logger.info('~= Cancer Detection Server Ready =~')
+server.listen(API_PORT, () => {
+	logger.info('~~~~~~~~~~~~~~~~~~~~~~~~~~')
+	logger.info('~= Cancer Detection API =~')
   logger.info('')
 	logger.info('ENV: ' + ENVIRONMENT)
-	logger.info('PORT: ' + SERVER_PORT)
-	logger.info('API: ' + API_ROUTE)
+	logger.info('URL: ' + HOST + ':' + API_PORT + API_ROUTE)
 })

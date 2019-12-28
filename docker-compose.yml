@@ -4,35 +4,35 @@ networks:
     driver: bridge
 services:
 
-  client:
+  web-app:
     env_file: .env
     build:
-      context: ./client
+      context: ./web-app
       dockerfile: Dockerfile.dev
     restart: always
     volumes:
-      - ./client:/code
+      - ./web-app:/code
       # - /code/node_modules
     networks:
       - cancer_network
     ports:
-      - "${CLIENT_PORT}:${CLIENT_PORT}"
+      - "${WEB_APP_PORT}:${WEB_APP_PORT}"
     command: sh -c "npm run dev"
 
-  server:
+  api:
     env_file: .env
     build:
-      context: ./server
+      context: ./api
       dockerfile: Dockerfile.dev
     restart: always
     volumes:
-      - ./server:/code
+      - ./api:/code
       # - /code/node_modules
     networks:
       cancer_network:
         aliases:
           - ${HOST_ALIAS}
     ports:
-      - "${SERVER_PORT}:${SERVER_PORT}"
+      - "${API_PORT}:${API_PORT}"
     command: sh -c "npm run dev"
   

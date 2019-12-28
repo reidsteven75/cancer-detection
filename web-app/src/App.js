@@ -13,7 +13,7 @@ import NotFound from './components/not-found'
 
 const HTTPS = (process.env.HTTPS === 'true')
 const PROD = (process.env.NODE_ENV === 'production')
-const API = (HTTPS ? 'https://' : 'http://') + process.env.HOST + (PROD ? '' : ':' + process.env.SERVER_PORT) + '/api'
+const API = (HTTPS ? 'https://' : 'http://') + process.env.HOST + (PROD ? '' : ':' + process.env.API_PORT) + '/api'
 
 const features = {
 

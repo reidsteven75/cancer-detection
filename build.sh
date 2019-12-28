@@ -1,7 +1,7 @@
 #!/bin/bash
 
-CLIENT_BUILD_DIR=./client/build
-SERVER_BUILD_DIR=./server/build
+WEB_APP_BUILD_DIR=./web-app/build
+API_BUILD_DIR=./api/build
 
 # set env from .env file
 ENV_FILE=$1
@@ -12,9 +12,9 @@ echo '~= Build =~'
 echo '~~~~~~~~~~~'
 echo 'ENV: '$NODE_ENV
 
-echo 'building client...'
+echo 'building web-app...'
 echo '------------------'
-cd client
+cd web-app
 env NODE_ENV=$NODE_ENV \
     HTTPS=$HTTPS \
     HOST=$HOST \
@@ -25,16 +25,15 @@ cd ..
 echo ''
 echo 'moving files for build...'
 echo '-------------------------'
-rm -r $SERVER_BUILD_DIR 
-mkdir -p $SERVER_BUILD_DIR
-# client build
-cp -r $CLIENT_BUILD_DIR $SERVER_BUILD_DIR/client
-echo 'moved:' $CLIENT_BUILD_DIR '->' $SERVER_BUILD_DIR 
+rm -r $API_BUILD_DIR 
+mkdir -p $API_BUILD_DIR
+cp -r $WEB_APP_BUILD_DIR $API_BUILD_DIR/web-app
+echo 'moved:' $WEB_APP_BUILD_DIR '->' $API_BUILD_DIR 
 
 echo ''
 echo 'committing new build...'
 echo '-----------------------'
-git commit -m 'client re-build' $SERVER_BUILD_DIR/client
+git commit -m 'web-app re-build' $API_BUILD_DIR/web-app
 
 echo '~~~~~~~~~~~'
 echo '~= Built =~'

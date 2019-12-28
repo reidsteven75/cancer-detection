@@ -6,14 +6,14 @@ $ ./init.sh
 
 Dev
 ----------------
-client
+web app
 ```
-$ docker-compose up --build client
+$ docker-compose up --build web-app
 ```
 
-server
+api
 ```
-$ docker-compose up --build server
+$ docker-compose up --build api
 ```
 
 Build
