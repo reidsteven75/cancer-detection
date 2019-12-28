@@ -12,7 +12,6 @@ services:
     restart: always
     volumes:
       - ./web-app:/code
-      # - /code/node_modules
     networks:
       - cancer_network
     ports:
@@ -27,7 +26,6 @@ services:
     restart: always
     volumes:
       - ./api:/code
-      # - /code/node_modules
     networks:
       cancer_network:
         aliases:

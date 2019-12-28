@@ -17,6 +17,15 @@ const style = {
   image: {
     width: '100%',
     height: '100%'
+  },
+  imageDarken: {
+    opacity: 0.2,
+    width: '100%',
+    height: '100%'
+  },
+  analyzer: {
+    position: 'relative',
+    top: '-180px'
   }
 }
 
@@ -38,7 +47,7 @@ class ImageViewer extends Component {
 	}
 
   render() {
-    const { image } = this.props
+    const { image, isAnalyzing } = this.props
 		
     const content = 
       <div style={style.imageContainer}>
@@ -46,12 +55,21 @@ class ImageViewer extends Component {
         {
           image ? 
             <img 
-              style={style.image}
+              style={isAnalyzing ? style.imageDarken : style.image}
               src={image.url} 
               alt=''
             />
             :
-            <div></div>
+            <React.Fragment/>
+        }
+
+        { isAnalyzing ?
+            <CircularProgress 
+              color='secondary' 
+              style={style.analyzer}
+            />
+            :
+            <React.Fragment/> 
         }
       </div>
 

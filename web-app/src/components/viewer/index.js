@@ -4,10 +4,12 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import compose from 'recompose/compose'
 import { withStyles } from '@material-ui/core/styles'
 import withWidth from '@material-ui/core/withWidth'
+import axios from 'axios'
 
 import ImageUpload from './image-upload'
 import ImageViewer from './image-viewer'
 import ImageAnalyze from './image-analyze'
+import AnalysisResults from './analysis-results'
 
 const style = {
   content: {
@@ -26,9 +28,12 @@ class Viewer extends Component {
     this.state = {
 			loading: true,
 			image: null,
-			isAnalyzeDisabled: true
+			analysisResults: null,
+			isAnalyzeDisabled: true,
+			isAnalyzing: false
 		}
 
+		this._handleErrorClose = this._handleErrorClose.bind(this)
 		this._handleImageUpload = this._handleImageUpload.bind(this)
 		this._handleImageAnalyze = this._handleImageAnalyze.bind(this)
 	}
@@ -37,17 +42,47 @@ class Viewer extends Component {
 		this.setState({loading:false})
 	}
 
+	_handleErrorClose() {
+		this.setState({analysisError: null})
+	}
+
 	_handleImageAnalyze() {
-		const reader = new FileReader()
 		let { image } = this.state
-		reader.onabort = () => console.log('file reading was aborted')
-		reader.onerror = () => console.log('file reading has failed')
-		reader.onload = () => {
-			image.arrayBuffer = reader.result
-			this.setState({image: image})
-			console.log(image)
-		}
-		reader.readAsArrayBuffer(image)
+		let bodyFormData = new FormData()
+		bodyFormData.append('image', image)
+
+		this.setState({isAnalyzing: true}, () => {
+			axios({
+				method: 'post',
+				url: this.props.api + '/image/analyze',
+				data: bodyFormData,
+				headers: {'Content-Type': 'multipart/form-data' }
+				})
+				.then((res) => {
+					if (res.data.error === true) {
+						this.setState({
+							analysisResults: null,
+							analysisError: res.data
+						})
+					}
+					else {
+						this.setState({
+							analysisResults: res.data,
+							analysisError: null
+						})
+					}
+				})
+				.catch((res) => {
+					this.setState({
+						analysisResults: null,
+						analysisError: true
+					})
+				})
+				.finally(() => {
+					this.setState({isAnalyzing: false})
+				})
+		})
+		
 	}
 
 	_handleImageUpload(image) {
@@ -70,16 +105,28 @@ class Viewer extends Component {
 		const content = 
 				<div style={style.maxHeight}>
 					<ImageUpload
+						disabled={this.state.isAnalyzing}
 						handleImageUpload={this._handleImageUpload}
 					/>
 					<br/>
 					<ImageViewer
 						image={this.state.image}
+						isAnalyzing={this.state.isAnalyzing}
 					/>
 					<br/>
 					<ImageAnalyze
-						disabled={this.state.isAnalyzeDisabled}
+						text={this.state.isAnalyzing ? 'Analyzing...' : 'Analyze'}
+						disabled={this.state.isAnalyzeDisabled || this.state.isAnalyzing}
 						handleImageAnalyze={this._handleImageAnalyze}
+					/>
+					<br/>
+					<br/>
+					<br/>
+					<AnalysisResults
+						handleErrorClose={this._handleErrorClose}
+						showError={this.state.analysisError ? true : false}
+						error={this.state.analysisError}
+						results={this.state.analysisResults}
 					/>
 				</div>
 

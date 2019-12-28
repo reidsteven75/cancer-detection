@@ -19,6 +19,9 @@ const style = {
     width: '100%',
     border: 'none'
   },
+  dropZoneInput: {
+    outline: 'none'
+  },
   uploadIcon: {
     fontSize: 40
   }
@@ -44,30 +47,33 @@ class ImageUpload extends Component {
   }
 
   render() {
-		
+
+    const { disabled } = this.props
+    
     const content = 
-    <Button 
-      style={style.button}
-      variant='contained' 
-      color='primary'
-    >
-      <Dropzone 
-        onDrop={image => this.handleUpload(image)}
+      <Button 
+        style={style.button}
+        variant='contained' 
+        color='primary'
+        disabled={disabled}
       >
-        {({getRootProps, getInputProps}) => (
-          <section
-            style={style.dropZone}
-          >
-            <div {...getRootProps()}>
-              <input {...getInputProps()} />
-              <BackupOutlinedIcon 
-                style={style.uploadIcon}
-              />
-            </div>
-          </section>
-        )}
-      </Dropzone>
-    </Button>
+        <Dropzone 
+          onDrop={image => this.handleUpload(image)}
+        >
+          {({getRootProps, getInputProps}) => (
+            <section
+              style={style.dropZone}
+            >
+              <div {...getRootProps()} style={style.dropZoneInput}>
+                <input {...getInputProps()} />
+                <BackupOutlinedIcon 
+                  style={style.uploadIcon}
+                />
+              </div>
+            </section>
+          )}
+        </Dropzone>
+      </Button>
 
     return (
 			<div style={style.content}>

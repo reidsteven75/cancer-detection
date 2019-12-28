@@ -11,6 +11,7 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const _ = require('lodash')
 const moment = require('moment')
+const Multer = require('multer')
 
 const ENVIRONMENT = process.env.NODE_ENV || 'development'
 const HTTPS = (process.env.HTTPS === 'true')
@@ -63,6 +64,14 @@ const logRequests = (req, res, next) => {
 	next()
 }
 
+const multer = Multer({
+	storage: Multer.memoryStorage(),
+	dest: 'upload/',
+  limits: {
+    fileSize: 50 * 1024 * 1024, // 50 mb max
+  },
+})
+
 app.use(logRequests)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -78,16 +87,41 @@ app.get(API_ROUTE + '/status', (req, res) => {
 	res.send({test:'works!'})
 })
 
-// client
-// ------
+app.post(API_ROUTE + '/image/analyze',  multer.single('image'), (req, res) => {
+	
+	if (!req.file) {
+		res.status(400).send({err: true});
+		console.log('no file uploaded')
+    return;
+	}
+
+	const metadata = req.body
+	const file = req.file
+
+	console.log(metadata)
+	console.log(file)
+
+	setTimeout(() => {
+		return res.send({tumor: false})
+		// return res.send({
+		// 	error: true,
+		// 	message: 'Server Failed'
+		// })
+	}, 2000)
+	
+})
+
+// web-app
+// -------
 app.get(WEB_APP_ROUTE, (req, res) => {
 	res.sendFile(path.resolve(path.join(WEB_APP_PATH), 'index.html'))
 })
 
+// server
+// ------
 server.listen(API_PORT, () => {
 	logger.info('~~~~~~~~~~~~~~~~~~~~~~~~~~')
 	logger.info('~= Cancer Detection API =~')
-  logger.info('')
 	logger.info('ENV: ' + ENVIRONMENT)
 	logger.info('URL: ' + HOST + ':' + API_PORT + API_ROUTE)
 })

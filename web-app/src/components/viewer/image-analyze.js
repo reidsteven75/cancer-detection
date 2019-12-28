@@ -36,21 +36,17 @@ class ImageUpload extends Component {
   }
 
   render() {
-
-    const { disabled } = this.props
-
-    console.log(disabled)
-
+    const { disabled, text } = this.props
     const content = 
-    <Button 
-      style={style.button}
-      variant='contained' 
-      color='secondary'
-      disabled={disabled}
-      onClick={this.handleClicked}
-    >
-      Analyze
-    </Button>
+      <Button 
+        style={style.button}
+        variant='contained' 
+        color='secondary'
+        disabled={disabled}
+        onClick={this.handleClicked}
+      >
+        {text}
+      </Button>
 
     return (
 			<div style={style.content}>

@@ -19,10 +19,9 @@ module.exports = merge(common, {
 
         console.info('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
         console.info('~= Cancer Detection Web App =~')
-        console.info('')
         console.info('ENV: ' + process.env.NODE_ENV)
         console.info('URL: ' + HOST + ':' + process.env.WEB_APP_PORT)
       }
     })
-]
+  ]
 })
