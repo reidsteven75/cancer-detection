@@ -12,6 +12,7 @@ const bodyParser = require('body-parser')
 const _ = require('lodash')
 const moment = require('moment')
 const Multer = require('multer')
+const compose = require('docker-compose')
 
 const ENVIRONMENT = process.env.NODE_ENV || 'development'
 const HTTPS = (process.env.HTTPS === 'true')
@@ -66,11 +67,12 @@ const logRequests = (req, res, next) => {
 
 const multer = Multer({
 	storage: Multer.memoryStorage(),
-	dest: 'upload/',
+	dest: 'files/',
   limits: {
     fileSize: 50 * 1024 * 1024, // 50 mb max
   },
 })
+
 
 app.use(logRequests)
 app.use(bodyParser.json())
@@ -100,6 +102,12 @@ app.post(API_ROUTE + '/image/analyze',  multer.single('image'), (req, res) => {
 
 	console.log(metadata)
 	console.log(file)
+
+	compose.upAll({ cwd: path.join(__dirname), log: true })
+		.then(
+			() => { console.log('done')},
+			err => { console.log('something went wrong:', err.message)}
+  	)
 
 	setTimeout(() => {
 		return res.send({tumor: false})

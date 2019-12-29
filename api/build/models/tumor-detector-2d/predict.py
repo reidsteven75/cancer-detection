@@ -8,20 +8,19 @@ from multiprocessing import Pool
 from tqdm import tqdm
 
 import utils
+import config
 
 print('~ load data ~')
-dataset_filepaths = utils.getFilePaths(DIR_DATA_PREDICT)
-# print(dataset)
-# dataset = tf.data.Dataset.from_tensor_slices(
-#     (tf.constant(dataset))
-#   )
-# print(dataset)
-# dataset = (dataset.map(_encodeImage))
+dataset_filepaths = utils.getFilePaths(config.DIR_DATA_PREDICT)
+df = pd.DataFrame(list(dataset_filepaths), columns=['image'])
+dataset = tf.data.Dataset.from_tensor_slices(
+    (df.values)
+  )
+dataset = (dataset.map(utils._encodeImage)
+          .batch(config.BATCH_SIZE)
+        )
 
-dataset = utils.parseFoldersToDataFrame(dataset_filepaths)
-dataset = utils.parseDataFrameToTensor(dataset, config.TARGET)
-dataset = (dataset.map(utils._encodeImage))
-
+print(dataset_filepaths)
 print(dataset)
 
 print('~ load model ~')

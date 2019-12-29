@@ -67,7 +67,14 @@ def parseDataFrameToTensor(df, target):
   )
   return(dataset)
 
-def parseFoldersToDataFrame(filepaths_dict):
+def parsePredictFoldersToDataFrame(filepaths_list):
+  X = []
+  for filepath in filepaths_list: 
+    X.append(filepath)
+  df = generateDataFrame(X,Y)
+  return(df)
+
+def parseTrainFoldersToDataFrame(filepaths_dict):
   Y = []
   X = []
   for label, filepaths in filepaths_dict.items():
@@ -84,7 +91,7 @@ def getFilePaths(dir):
       files.append(dir + '/' + file)
   return(files)
 
-def _encodeImage(filepath, label):
+def _encodeImage(filepath, label='unknown'):
   img = tf.io.read_file(filepath[0])
   img = tf.image.decode_png(img, channels=3) # RGB
   img = (tf.cast(img, tf.float32)/127.5) - 1

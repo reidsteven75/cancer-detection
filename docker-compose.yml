@@ -48,3 +48,4 @@ services:
       - cancer_network
     environment:
       - MODE=${MODE}
+    command: sh -c "python3 index.py"
