@@ -27,7 +27,7 @@ class Header extends Component {
 			<div>
 				<AppBar 
 					position='static'
-					color='secondary'
+					color='inherit'
 				>
 					<Toolbar>
 						<Typography 

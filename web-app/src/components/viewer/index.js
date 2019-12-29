@@ -51,7 +51,11 @@ class Viewer extends Component {
 		let bodyFormData = new FormData()
 		bodyFormData.append('image', image)
 
-		this.setState({isAnalyzing: true}, () => {
+		this.setState({
+			isAnalyzing: true,
+			analysisResults: null,
+			analysisError: null
+		}, () => {
 			axios({
 				method: 'post',
 				url: this.props.api + '/image/analyze',
@@ -75,7 +79,10 @@ class Viewer extends Component {
 				.catch((res) => {
 					this.setState({
 						analysisResults: null,
-						analysisError: true
+						analysisError: {
+							error: true,
+							message: 'web app request error'
+						}
 					})
 				})
 				.finally(() => {

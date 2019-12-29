@@ -34,3 +34,17 @@ services:
       - "${API_PORT}:${API_PORT}"
     command: sh -c "npm run dev"
   
+  tumor-detector-2d:
+    build:
+      context: ./models/tumor-detector-2d
+    volumes:
+        - ./models/tumor-detector-2d/data:/code/data
+        - ./models/tumor-detector-2d/artifacts:/code/artifacts
+        - ./models/tumor-detector-2d/checkpoints:/code/checkpoints
+        - ./models/tumor-detector-2d/trained-model:/code/trained-model
+    ports:
+      - "${MODEL_TUMOR_DETECTOR_2D_PORT}:${MODEL_TUMOR_DETECTOR_2D_PORT}"
+    networks:
+      - cancer_network
+    environment:
+      - MODE=${MODE}

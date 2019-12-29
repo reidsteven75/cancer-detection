@@ -1,0 +1,12 @@
+object-detection-2d_1          | 	 [[{{node IteratorGetNext}}]]
+# transfer, basic
+accuracy = 0.55
+loss = 0.9870
+
+# basic
+accuracy = 0.5
+loss = 1.1309
+
+# 
+accuracy = 
+loss = 

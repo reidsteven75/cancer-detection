@@ -5,7 +5,7 @@ $ ./init.sh
 ```
 
 Dev
-----------------
+---
 web app
 ```
 $ docker-compose up --build web-app
@@ -14,6 +14,22 @@ $ docker-compose up --build web-app
 api
 ```
 $ docker-compose up --build api
+```
+
+
+AI Models
+---------
+
+#### 2D Object Detection
+
+Train Model
+```
+$ MODE=train docker-compose up --build tumor-detector-2d
+```
+
+Predict With Trained Model
+```
+$ MODE=predict docker-compose up --build tumor-detector-2d
 ```
 
 Build
