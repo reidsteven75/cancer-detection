@@ -4,10 +4,10 @@
 
 # common folders
 node_modules
-checkpoints
-data
-trained-model
-build
+**/checkpoints/*
+**/data/*
+**/trained-model/*
+**/build/*
 
 # OSX hidden metadata file
 .DS_Store
