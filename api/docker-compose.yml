@@ -1,9 +1,0 @@
-version: '3'
-services:
-  
-  tumor-detector-2d-predict:
-    build:
-      context: ./models/tumor-detector-2d
-    ports:
-      - 5555:5555
-    command: sh -c "python3 predict.py"
