@@ -4,6 +4,7 @@
 
 # common folders
 node_modules
+**/artifacts/*
 **/checkpoints/*
 **/data/*
 
