@@ -6,7 +6,6 @@
 node_modules
 **/checkpoints/*
 **/data/*
-**/build/*
 
 # OSX hidden metadata file
 .DS_Store
