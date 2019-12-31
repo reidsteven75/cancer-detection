@@ -3,10 +3,10 @@
 *.log
 
 # common folders
-**/node_modules
-**/checkpoints/*
-**/data/*
-**/trained-model/*
+node_modules
+checkpoints/*
+data/*
+trained-model/*
 
 
 # OSX hidden metadata file
