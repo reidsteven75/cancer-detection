@@ -11,3 +11,6 @@ build
 
 # OSX hidden metadata file
 .DS_Store
+
+# Keep these folders
+!.keep
