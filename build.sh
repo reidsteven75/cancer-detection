@@ -35,11 +35,6 @@ echo '------------------'
 for folder in $MODEL_DIR/* ; do
   mkdir -p $API_BUILD_DIR/$folder
   cp -r ./$folder/trained-model $API_BUILD_DIR/$folder
-  cp ./$folder/Dockerfile $API_BUILD_DIR/$folder
-  cp ./$folder/predict.py $API_BUILD_DIR/$folder
-  cp ./$folder/utils.py $API_BUILD_DIR/$folder
-  cp ./$folder/requirements.txt $API_BUILD_DIR/$folder
-  cp ./$folder/config.py $API_BUILD_DIR/$folder
   echo 'built:' ./$folder '->' $API_BUILD_DIR/$folder
 done
 
