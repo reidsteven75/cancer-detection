@@ -7,7 +7,7 @@ echo '~~~~~~~~~~~~'
 echo ''
 echo 'deploying...'
 echo '------------'
-git subtree push --prefix api heroku master
+git push origin `git subtree split --prefix api master`:master --force
 
 echo '~~~~~~~~~~~~~~'
 echo '~= Deployed =~'
