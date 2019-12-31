@@ -1,13 +1,13 @@
-# Temporary files.
+# files
 .#*
-
-# Log files.
 *.log
 
-# Don't push node_modules - we want the build server to install these.
-node_modules/
-client/node_modules
+# common folders
+**/node_modules
+**/checkpoints/*
+**/data/*
+**/trained-model/*
 
 
-#OSX hidden metadata file
+# OSX hidden metadata file
 .DS_Store
