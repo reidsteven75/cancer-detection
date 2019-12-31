@@ -33,8 +33,8 @@ echo 'built:' $WEB_APP_BUILD_DIR '->' $API_BUILD_DIR
 echo 'building models...'
 echo '------------------'
 for folder in $MODEL_DIR/* ; do
-  mkdir -p $API_BUILD_DIR/$folder
-  cp -r ./$folder/trained-model $API_BUILD_DIR/$folder
+  mkdir -p $API_BUILD_DIR/$MODEL_DIR
+  cp -r ./$folder/trained-model/. $API_BUILD_DIR/$MODEL_DIR
   echo 'built:' ./$folder '->' $API_BUILD_DIR/$folder
 done
 
