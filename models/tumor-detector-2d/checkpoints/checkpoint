@@ -1,2 +1,0 @@
-model_checkpoint_path: "cancer-detector-2d.ckpt"
-all_model_checkpoint_paths: "cancer-detector-2d.ckpt"
