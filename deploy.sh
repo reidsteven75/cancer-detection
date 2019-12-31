@@ -7,7 +7,7 @@ echo '~~~~~~~~~~~~'
 echo ''
 echo 'deploying...'
 echo '------------'
-git push heroku master
+git subtree push --prefix api heroku master
 
 echo '~~~~~~~~~~~~~~'
 echo '~= Deployed =~'
