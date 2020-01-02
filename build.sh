@@ -34,7 +34,10 @@ echo 'building models...'
 echo '------------------'
 for folder in $MODEL_DIR/* ; do
   mkdir -p $API_BUILD_DIR/$MODEL_DIR
-  cp -r ./$folder/trained-model/. $API_BUILD_DIR/$MODEL_DIR
+  file="$(basename -- $folder)"
+  tensorflowjs_converter --input_format keras \
+                       ./$folder/trained-model/$file.h5 \
+                       $API_BUILD_DIR/$folder
   echo 'built:' ./$folder '->' $API_BUILD_DIR/$folder
 done
 
