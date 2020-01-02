@@ -18,20 +18,20 @@ services:
       - "${WEB_APP_PORT}:${WEB_APP_PORT}"
     command: sh -c "npm run dev"
 
-  api:
+  server:
     env_file: .env
     build:
-      context: ./api
+      context: ./server
       dockerfile: Dockerfile.dev
     restart: always
     volumes:
-      - ./api:/code
+      - ./server:/code
     networks:
       cancer_network:
         aliases:
           - ${HOST_ALIAS}
     ports:
-      - "${API_PORT}:${API_PORT}"
+      - "${SERVER_PORT}:${SERVER_PORT}"
     command: sh -c "npm run dev"
   
   tumor-detector-2d:
