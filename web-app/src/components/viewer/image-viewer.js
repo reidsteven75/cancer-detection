@@ -4,6 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import compose from 'recompose/compose'
 import { withStyles } from '@material-ui/core/styles'
 import withWidth from '@material-ui/core/withWidth'
+import { Zoom } from '@material-ui/core'
 
 const style = {
   content: {
@@ -48,17 +49,22 @@ class ImageViewer extends Component {
 
   render() {
     const { image, isAnalyzing } = this.props
+
+    let zoomAnimation = false
+    if (image !== this.prevImage) { zoomAnimation = true }
 		
     const content = 
       <div style={style.imageContainer}>
         
         {
           image ? 
-            <img 
-              style={isAnalyzing ? style.imageDarken : style.image}
-              src={image.url} 
-              alt=''
-            />
+            <Zoom in={zoomAnimation}>
+              <img 
+                style={isAnalyzing ? style.imageDarken : style.image}
+                src={image.url} 
+                alt=''
+              />
+            </Zoom>
             :
             <React.Fragment/>
         }

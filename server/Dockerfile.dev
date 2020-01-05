@@ -3,6 +3,10 @@ FROM nikolaik/python-nodejs:python3.7-nodejs13
 WORKDIR /code
 COPY . /code
 
+# Install packages
+COPY package*.json /code/
+RUN npm install
+
 # ---------------------------------
 # - UNCOMMENT IF LOCAL MONGO USED -
 # ---------------------------------

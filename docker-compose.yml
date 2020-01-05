@@ -26,12 +26,13 @@ services:
     restart: always
     volumes:
       - ./server:/code
+      - /code/node_modules
     networks:
       cancer_network:
         aliases:
           - ${HOST_ALIAS}
     ports:
-      - "${SERVER_PORT}:${SERVER_PORT}"
+      - "${API_PORT}:${API_PORT}"
     command: sh -c "npm run dev"
   
   tumor-detector-2d:

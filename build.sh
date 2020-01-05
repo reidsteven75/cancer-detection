@@ -24,7 +24,7 @@ cd web-app
 env NODE_ENV=$NODE_ENV \
     HTTPS=$HTTPS \
     HOST=$HOST \
-    SERVER_PORT=$SERVER_PORT \
+    API_PORT=$API_PORT \
     npm run build
 cd ..
 cp -r $WEB_APP_BUILD_DIR $SERVER_BUILD_DIR/web-app
@@ -35,17 +35,16 @@ echo '------------------'
 for folder in $MODEL_DIR/* ; do
   mkdir -p $SERVER_BUILD_DIR/$folder
   file="$(basename -- $folder)"
-  cp -r ./$folder/trained-model $API_BUILD_DIR/$folder
-  cp ./$folder/Dockerfile $SERVER_BUILD_DIR/$folder
-  cp ./$folder/predict.py $SERVER_BUILD_DIR/$folder
-  cp ./$folder/utils.py $SERVER_BUILD_DIR/$folder
-  cp ./$folder/requirements.txt $SERVER_BUILD_DIR/$folder
-  cp ./$folder/config.py $SERVER_BUILD_DIR/$folder
-  cp ./$folder/config.py $SERVER_BUILD_DIR/$folder
+  # cp ./$folder/$file.h5 $SERVER_BUILD_DIR/$folder
+  # cp ./$folder/Dockerfile $SERVER_BUILD_DIR/$folder
+  # cp ./$folder/predict.py $SERVER_BUILD_DIR/$folder
+  # cp ./$folder/utils.py $SERVER_BUILD_DIR/$folder
+  # cp ./$folder/requirements.txt $SERVER_BUILD_DIR/$folder
+  # cp ./$folder/config.py $SERVER_BUILD_DIR/$folder
 
-  # tensorflowjs_converter --input_format keras \
-  #                      ./$folder/trained-model/$file.h5 \
-  #                      $SERVER_BUILD_DIR/$folder
+  tensorflowjs_converter --input_format keras \
+                       ./$folder/trained-model/$file.h5 \
+                       $SERVER_BUILD_DIR/$folder
   echo 'built:' ./$folder '->' $SERVER_BUILD_DIR/$folder
 done
 

@@ -12,8 +12,7 @@ const _ = require('lodash')
 const moment = require('moment')
 const Multer = require('multer')
 
-const tumorDetector2D = require('./tf-models/tumor-detector-2d.js')
-// tumorDetector2D.initModel()
+const TumorDetector2D = require('./tf-models/tumor-detector-2d.js')
 
 const ENVIRONMENT = process.env.NODE_ENV || 'development'
 const HTTPS = (process.env.HTTPS === 'true')
@@ -22,7 +21,6 @@ const API_PORT = process.env.API_PORT || process.env.PORT
 const API_ROUTE = '/api'
 const WEB_APP_ROUTE = ''
 const WEB_APP_PATH = 'build/web-app'
-
 
 const config = {
 
@@ -105,7 +103,7 @@ app.post(API_ROUTE + '/image/analyze',  multer.single('image'), (req, res) => {
 	console.log(metadata)
 	console.log(file)
 
-	tumorDetector2D.predict()
+	TumorDetector2D.predict()
 
 	setTimeout(() => {
 		return res.send({tumor: false})
@@ -130,4 +128,6 @@ server.listen(API_PORT, () => {
 	logger.info('~= Cancer Detection API =~')
 	logger.info('ENV: ' + ENVIRONMENT)
 	logger.info('URL: ' + HOST + ':' + API_PORT + API_ROUTE)
+
+	TumorDetector2D.init()
 })
