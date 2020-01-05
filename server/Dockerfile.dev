@@ -5,6 +5,7 @@ COPY package*.json /code/
 
 # Install packages
 WORKDIR /code
+RUN npm install
 
 # BETTER DOCKER SETUP
 # https://stackoverflow.com/questions/51097652/install-node-modules-inside-docker-container-and-synchronize-them-with-host

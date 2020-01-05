@@ -1,5 +1,6 @@
 const express = require('express')
 const Multer = require('multer')
+const fs = require('fs')
 
 const Logger = require('../logger.js')
 const logger = Logger.init()
@@ -34,8 +35,13 @@ app.post('/analyze',  multer.single('image'), (req, res) => {
       })
     }
 
-    logger.info(result)
-    return res.send(result)
+    fs.unlink(file.path, function (err) {
+      if (err) { 
+        logger.error('file not deleted')
+        logger.error(err)
+      }
+      return res.send(result)
+    })  
     
   })
 	
