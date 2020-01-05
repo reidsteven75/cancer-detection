@@ -100,10 +100,7 @@ app.post(API_ROUTE + '/image/analyze',  multer.single('image'), (req, res) => {
 	const metadata = req.body
 	const file = req.file
 
-	console.log(metadata)
-	console.log(file)
-
-	TumorDetector2D.predict()
+	TumorDetector2D.predict(file.path)
 
 	setTimeout(() => {
 		return res.send({tumor: false})

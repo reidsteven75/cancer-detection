@@ -70,6 +70,12 @@ Node Modules
 $ docker-compose down
 ```
 
+Docker No Space Left
+--------------------
+`docker rm $(docker ps -q -f 'status=exited')`
+
+`docker rmi $(docker images -q -f 'dangling=true')`
+
 Environment Variables
 ---------------------
 - set in root .env files

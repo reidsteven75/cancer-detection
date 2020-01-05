@@ -1,6 +1,7 @@
 # files
 .#*
 *.log
+server/files
 
 # common folders
 node_modules

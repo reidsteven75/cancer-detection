@@ -1,11 +1,17 @@
-FROM nikolaik/python-nodejs:python3.7-nodejs13
+FROM nikolaik/python-nodejs:python3.7-nodejs12
 
-WORKDIR /code
+# RUN apt-get install libvips
+
 COPY . /code
+COPY package*.json /code/
 
 # Install packages
-COPY package*.json /code/
-RUN npm install
+WORKDIR /code
+# RUN npm install
+# RUN npm install sharp
+
+# BETTER DOCKER SETUP
+# https://stackoverflow.com/questions/51097652/install-node-modules-inside-docker-container-and-synchronize-them-with-host
 
 # ---------------------------------
 # - UNCOMMENT IF LOCAL MONGO USED -
