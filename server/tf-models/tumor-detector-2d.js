@@ -1,7 +1,9 @@
-const pixels = require('image-pixels')
 const sharp = require('sharp')
 const tf = require('@tensorflow/tfjs')
 const tfnode = require('@tensorflow/tfjs-node')
+
+const Logger = require('../logger.js')
+const logger = Logger.init()
 
 const modelName = 'tumor-detector-2d'
 const modelPath = `file://build/models/${modelName}/model.json`
@@ -13,10 +15,10 @@ let model = null
 const init = async () => {
   try {
     model = await tf.loadLayersModel(modelPath)
-    console.info(`model loaded: ${modelName}`)
+    logger.info(`model loaded: ${modelName}`)
   } catch (e) {
-    console.error(`model load error: ${modelName}`)
-    console.error(e)
+    logger.error(`model load error: ${modelName}`)
+    logger.error(e)
   } 
 }
 
@@ -28,10 +30,10 @@ const predict = async (imagePath) => {
     const imageTensor = tfnode.node.decodeImage(imageProcessed)
       .expandDims()
     const prediction = await model.predict(imageTensor)
-    console.info(`classification: ${prediction}`)
+    logger.info(`classification: ${prediction}`)
   } catch (e) {
-    console.error(`prediction error: ${modelName}`)
-    console.error(e)
+    logger.error(`prediction error: ${modelName}`)
+    logger.error(e)
   } 
 }
 
