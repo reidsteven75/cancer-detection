@@ -13,3 +13,5 @@ echo '~~~~~~~~~~~~~~'
 echo '~= Deployed =~'
 echo '~~~~~~~~~~~~~~'
 echo 'https://cancer-detection-prod.herokuapp.com/'
+
+heroku logs -t -a cancer-detection-prod
