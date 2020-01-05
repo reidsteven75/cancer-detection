@@ -95,16 +95,21 @@ class Viewer extends Component {
 	_handleImageUpload(image) {
 
 		const reader = new FileReader()
-		reader.onabort = () => console.log('file reading was aborted')
-		reader.onerror = () => console.log('file reading has failed')
-		reader.onload = () => {
-			image.url = reader.result
-			this.setState({
-				image: image,
-				isAnalyzeDisabled: false
-			})
-		}
-		reader.readAsDataURL(image)
+		this.setState({
+			image: null,
+			analysisResults: null
+		}, () => {
+			reader.onabort = () => console.log('file reading was aborted')
+			reader.onerror = () => console.log('file reading has failed')
+			reader.onload = () => {
+				image.url = reader.result
+				this.setState({
+					image: image,
+					isAnalyzeDisabled: false
+				})
+			}
+			reader.readAsDataURL(image)
+		})
 	}
 
   render() {
@@ -126,8 +131,6 @@ class Viewer extends Component {
 						disabled={this.state.isAnalyzeDisabled || this.state.isAnalyzing}
 						handleImageAnalyze={this._handleImageAnalyze}
 					/>
-					<br/>
-					<br/>
 					<br/>
 					<AnalysisResults
 						handleErrorClose={this._handleErrorClose}

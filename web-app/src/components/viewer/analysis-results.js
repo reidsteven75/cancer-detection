@@ -13,12 +13,18 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
+import Slide from '@material-ui/core/Slide'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
 
 const style = {
   content: {
-		padding: 20,
-		width: '100%',
-	}
+		width: '100%'
+  },
+  title: {
+    fontSize: 16
+  }
 }
 
 class Viewer extends Component {
@@ -49,12 +55,34 @@ class Viewer extends Component {
         <div>
           { 
             results ? 
-              <Chip 
-                variant='outlined'
-                label={results.tumor ? 'Tumor Detected' : 'Healthy'}
-                icon={results.tumor ? <ErrorOutline /> : <CheckCircleOutlineIcon />} 
-                color={results.tumor ? 'primary' : 'secondary' } 
-              />
+              <Slide direction="up" in={true} mountOnEnter unmountOnExit>
+                <Card>
+                  <CardContent>
+                    <Typography 
+                      style={style.title}
+                      color='textPrimary' 
+                      // gutterBottom
+                    >
+                      Results
+                    </Typography>
+                    <br/>
+                    <Chip 
+                      variant='outlined'
+                      label={results.tumor ? 'Tumor Detected' : 'Healthy'}
+                      icon={results.tumor ? <ErrorOutline /> : <CheckCircleOutlineIcon />} 
+                      color={results.tumor ? 'primary' : 'secondary' } 
+                    />
+                    <br/>
+                    <br/>
+                    <Typography 
+                      variant='body2' 
+                      component='p'
+                    >
+                      {(results.confidence).toFixed(2) * 100}% confidence
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Slide>
               :
               <React.Fragment/>
 					}

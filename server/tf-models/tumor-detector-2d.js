@@ -9,7 +9,7 @@ const modelName = 'tumor-detector-2d'
 const modelPath = `file://build/models/${modelName}/model.json`
 
 const IMAGE_SIZE = 96
-const IMAGE_CHANNELS = 4 // RGB
+
 let model = null
 
 const init = async () => {
@@ -31,16 +31,16 @@ const predict = async (imagePath) => {
       .expandDims()
     const prediction = await model.predict(imageTensor)
     logger.info(`classification: ${prediction}`)
-  } catch (e) {
-    logger.error(`prediction error: ${modelName}`)
-    logger.error(e)
+    return {
+      tumor: true,
+      confidence: 0.98
+    }
+  } catch (err) {
+    return {
+      err: err
+    }
   } 
 }
-
-    // const imagePixels = await pixels(imageProcessed, {shape: [IMAGE_SIZE, IMAGE_SIZE]})
-    // console.log('PIXELS')
-    // console.log(imagePixels)
-    // const imageTensor = tf.tensor3d(imagePixels.data, [IMAGE_SIZE, IMAGE_SIZE, IMAGE_CHANNELS])
 
 module.exports = {
   init,

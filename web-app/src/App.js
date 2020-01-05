@@ -31,17 +31,7 @@ const theme = createMuiTheme({
       light: teal['A200'],
       main: teal['A400'],
       dark: teal['A700'],
-    },
-    // error: {
-    //   light: '#e57373',
-    //   main: '#f44336',
-    //   dark: '#d32f2f'
-    // },
-    // success: {
-    //   light: '#81c784',
-    //   main: '#4caf50',
-    //   dark: '#388e3c'
-    // }
+    }
   },
   typography: {
     useNextVariants: true,

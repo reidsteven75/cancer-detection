@@ -15,27 +15,29 @@ const multer = Multer({
   },
 })
 
-
 app.post('/analyze',  multer.single('image'), (req, res) => {
 	
 	if (!req.file) {
-		res.status(400).send({err: true});
 		logger.info('no file uploaded')
-    return;
+    return res.status(400).send({err: true})
 	}
 
-	const metadata = req.body
 	const file = req.file
 
-	TumorDetector2D.predict(file.path)
+  TumorDetector2D.predict(file.path).then((result) => {
 
-	setTimeout(() => {
-		return res.send({tumor: false})
-		// return res.send({
-		// 	error: true,
-		// 	message: 'Server Failed'
-		// })
-	}, 2000)
+    if (result.err) {
+      logger.error(result.err)
+      return res.send({
+        error: true,
+        message: 'Server process failed'
+      })
+    }
+
+    logger.info(result)
+    return res.send(result)
+    
+  })
 	
 })
 
