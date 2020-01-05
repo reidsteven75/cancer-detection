@@ -97,3 +97,6 @@ def _encodeImage(filepath, label='unknown'):
   img = (tf.cast(img, tf.float32)/127.5) - 1
   img = tf.image.resize(img, (config.IMAGE_SIZE, config.IMAGE_SIZE))
   return(img, label)
+
+def numClasses():
+  return(len(config.CLASS_ENCODINGS.keys()))

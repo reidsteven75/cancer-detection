@@ -28,6 +28,15 @@ model = tf.keras.models.load_model(config.DIR_TRAINED_MODEL + '/' + config.MODEL
 
 print('~ predicting ~')
 predictions = model.predict(dataset)
-print(predictions)
+
+results = []
+for key, value in config.CLASS_ENCODINGS.items():
+  result = {
+    'class': key,
+    'confidence': predictions[0][value]
+  }
+  results.append(result)
+
+print(results)
 
 print('~ done ~')

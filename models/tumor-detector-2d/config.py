@@ -8,6 +8,7 @@ MODEL_NAME = 'tumor-detector-2d'
 TARGET = 'label'
 IMAGE_SIZE = 96 # Minimum image size for use with MobileNetV2
 IMG_SHAPE = (IMAGE_SIZE, IMAGE_SIZE, 3)
+
 CLASS_ENCODINGS = {
   'none': 0,
   'tumor': 1 

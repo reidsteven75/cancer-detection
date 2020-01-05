@@ -31,6 +31,7 @@ const predict = async (imagePath) => {
       .expandDims()
     const prediction = await model.predict(imageTensor)
     logger.info(`classification: ${prediction}`)
+    console.log(prediction.array)
     return {
       tumor: true,
       confidence: 0.98

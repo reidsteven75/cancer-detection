@@ -10,6 +10,10 @@ from tqdm import tqdm
 import utils
 import config
 
+def printDataset(dataset):
+  for x, y in dataset:
+    print(x, y)
+
 def printDatasetX(dataset):
   for x, y in dataset:
     print(x)
@@ -55,35 +59,37 @@ test = (test_tensor.map(utils._encodeImage)
       .batch(config.BATCH_SIZE)
       )
 
+print('~ configuring & compiling model ~')
+
 # print('~ transfer learning from MobileNetV2 ~')
 # base_model = tf.keras.applications.MobileNetV2(
-#   input_shape=IMG_SHAPE,
+#   input_shape=config.IMG_SHAPE,
 #   include_top=False,
 #   weights='imagenet'
 # )
 # base_model.trainable = False
-
-print('~ configuring & compiling model ~')
+# model = tf.keras.Sequential([
+#   base_model,
+#   tf.keras.layers.GlobalMaxPooling2D(),
+#   tf.keras.layers.Dense(utils.numClasses(), activation='softmax')
+# ])
 model = tf.keras.Sequential([
-  # base_model,
-  # tf.keras.layers.GlobalMaxPooling2D(),
-  # tf.keras.layers.Dense(1, activation='sigmoid')
-  tf.keras.layers.Conv2D(filters=16, kernel_size=(5,5),padding='Same', activation='relu', input_shape=(config.IMAGE_SIZE,config.IMAGE_SIZE,3)),
+  tf.keras.layers.Conv2D(filters=16, kernel_size=(5,5), padding='Same', activation='relu', input_shape=(config.IMAGE_SIZE,config.IMAGE_SIZE,3)),
   tf.keras.layers.MaxPool2D(pool_size=(2,2)),
   tf.keras.layers.Dropout(0.2),
-  tf.keras.layers.Conv2D(filters=64, kernel_size=(3,3),padding='Same', activation='relu'),
+  tf.keras.layers.Conv2D(filters=64, kernel_size=(3,3), padding='Same', activation='relu'),
   tf.keras.layers.MaxPool2D(pool_size=(2,2), strides=(2,2)),
   tf.keras.layers.Dropout(0.2),
-  tf.keras.layers.Conv2D(filters=64, kernel_size=(3,3),padding='Same', activation='relu'),
+  tf.keras.layers.Conv2D(filters=64, kernel_size=(3,3), padding='Same', activation='relu'),
   tf.keras.layers.MaxPool2D(pool_size=(2,2), strides=(2,2)),
   tf.keras.layers.Dropout(0.2),
   tf.keras.layers.Flatten(),
   tf.keras.layers.Dense(512, activation='relu'),
-  tf.keras.layers.Dense(1, activation='sigmoid')
+  tf.keras.layers.Dense(utils.numClasses(), activation='softmax')
 ])
 
 model.compile(optimizer=tf.keras.optimizers.Adam(lr=config.LEARNING_RATE), 
-              loss='binary_crossentropy',
+              loss='categorical_crossentropy',
               metrics=['accuracy'])
 
 print(model.summary())

@@ -51,7 +51,8 @@ done
 echo ''
 echo 'committing new build...'
 echo '-----------------------'
-git commit -m 'web-app re-build' $SERVER_BUILD_DIR/web-app
+git add $SERVER_BUILD_DIR
+git commit -m 'build'
 
 echo '~~~~~~~~~~~'
 echo '~= Built =~'
