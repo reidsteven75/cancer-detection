@@ -36,8 +36,9 @@ const predict = async (imagePath) => {
     return await model.predict(imageTensor)
               .array()
               .then((predictions) => { 
-                logger.info(predictions)
                 const prediction = predictions[0]
+                let classPrediction = []
+                logger.info(classPrediction)
                 let index = prediction.indexOf(Math.max(...prediction))
                 let tumor = false
                 if (index == 1) { tumor = true }
