@@ -9,12 +9,16 @@ const modelName = 'tumor-detector-2d'
 const modelPath = `file://build/models/${modelName}/model.json`
 
 const IMAGE_SIZE = 96
+const CLASS_ENCODINGS = {
+  'none': 0,
+  'tumor': 1 
+}
 
 let model = null
 
 const init = async () => {
   try {
-    model = await tf.loadLayersModel(modelPath)
+    model = await tfnode.loadLayersModel(modelPath)
     logger.info(`model loaded: ${modelName}`)
   } catch (e) {
     logger.error(`model load error: ${modelName}`)
@@ -29,13 +33,19 @@ const predict = async (imagePath) => {
       .toBuffer()
     const imageTensor = tfnode.node.decodeImage(imageProcessed)
       .expandDims()
-    const prediction = await model.predict(imageTensor)
-    logger.info(`classification: ${prediction}`)
-    console.log(prediction.array)
-    return {
-      tumor: true,
-      confidence: 0.98
-    }
+    return await model.predict(imageTensor)
+              .array()
+              .then((predictions) => { 
+                logger.info(predictions)
+                const prediction = predictions[0]
+                let index = prediction.indexOf(Math.max(...prediction))
+                let tumor = false
+                if (index == 1) { tumor = true }
+                return {
+                  tumor: tumor,
+                  confidence: prediction[index]
+                }
+              })
   } catch (err) {
     return {
       err: err
