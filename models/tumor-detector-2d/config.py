@@ -4,6 +4,7 @@
 DIR_DATA_TRAIN = './data/brain_tumors'
 DIR_CHECKPOINT = './checkpoints'
 DIR_TRAINED_MODEL = './trained-model'
+DIR_ARTIFACTS = './artifacts'
 MODEL_NAME = 'tumor-detector-2d'
 TARGET = 'label'
 IMAGE_SIZE = 96 # Minimum image size for use with MobileNetV2

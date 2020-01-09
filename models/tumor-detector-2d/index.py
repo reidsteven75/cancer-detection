@@ -7,3 +7,5 @@ if __name__ == '__main__':
     import train
   elif (MODE == 'predict'):
     import predict
+  elif (MODE == 'generate'):
+    import generate
