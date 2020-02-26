@@ -18,6 +18,9 @@ CLASS_ENCODINGS = {
 # PREDICT
 DIR_DATA_PREDICT = './data/predict'
 
+# GENERATE
+DIR_DATA_GENERATE = './data/generate'
+
 # TRAIN
 VAL_TRAIN_RATIO = 0.3  # VAL / TEST
 BATCH_SIZE = 32

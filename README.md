@@ -20,6 +20,13 @@ $ docker-compose up --build api
 AI Models
 ---------
 
+#### Synthetic Data Generation
+
+GAN
+```
+$ MODE=generate docker-compose up --build tumor-detector-2d
+```
+
 #### 2D Object Detection
 
 Train Model

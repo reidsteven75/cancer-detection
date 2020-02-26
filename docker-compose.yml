@@ -49,4 +49,19 @@ services:
       - cancer_network
     environment:
       - MODE=${MODE}
+      - WANDB_API_KEY=${WANDB_API_KEY}
+    command: sh -c "python3 index.py"
+  
+  data-generator:
+    build:
+      context: ./models/data-generator
+    volumes:
+        - ./models/data-generator/files:/code/files
+    ports:
+      - "${MODEL_DATA_GENERATOR_PORT}:${MODEL_DATA_GENERATOR_PORT}"
+    networks:
+      - cancer_network
+    environment:
+      - MODE=${MODE}
+      - WANDB_API_KEY=${WANDB_API_KEY}
     command: sh -c "python3 index.py"
