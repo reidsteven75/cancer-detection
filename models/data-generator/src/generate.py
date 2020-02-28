@@ -27,7 +27,7 @@ random.seed(manualSeed)
 torch.manual_seed(manualSeed)
 
 # Root directory for dataset
-dataroot = "./files/data/generate"
+dataroot = "./dataset/generate"
 
 # Number of workers for dataloader
 workers = 2
@@ -52,7 +52,7 @@ ngf = 64
 ndf = 64
 
 # Number of training epochs
-num_epochs = 5000
+num_epochs = 5
 
 # Learning rate for optimizers
 lr = 0.0002
@@ -269,11 +269,11 @@ for epoch in range(num_epochs):
     D_losses.append(errD.item())
 
     # Check how the generator is doing by saving G's output on fixed_noise
-    # if (iters % 500 == 0) or ((epoch == num_epochs-1) and (i == len(dataloader)-1)):
-    with torch.no_grad():
-      fake = netG(fixed_noise).detach().cpu()
-    gen_img = vutils.make_grid(fake, padding=2, normalize=True)
-    img_list.append(gen_img)
+    if (iters % 500 == 0) or ((epoch == num_epochs-1) and (i == len(dataloader)-1)):
+      with torch.no_grad():
+        fake = netG(fixed_noise).detach().cpu()
+      gen_img = vutils.make_grid(fake, padding=2, normalize=True)
+      img_list.append(gen_img)
 
     # Output training stats
     if i % 50 == 0:
@@ -283,8 +283,8 @@ for epoch in range(num_epochs):
       wandb.log({
         'Loss Discriminator': errD.item(), 
         'Loss Generator': errG.item(),
-        'D(x)': D_x,
-        'D(G(z))': D_G_z1 / D_G_z2,
+        'Real Images: D(x)': D_x,
+        'Generated Images: D(G(z))': D_G_z1 / D_G_z2,
         'Generated Images': [wandb.Image(img_list[-1], caption="Brain")]
       })
 
