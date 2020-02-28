@@ -1,9 +1,0 @@
-{
-  "common": {
-    "IMAGE_SIZE": 96,
-    "IMG_CHANNELS": 3
-  },
-  "generate": {
-    "DIR_DATA_GENERATE": "./data/generate"
-  }
-}
