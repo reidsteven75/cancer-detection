@@ -1,0 +1,7 @@
+{
+  "common": {
+    "FILE_EXTENSIONS": [".gz", ".nii"],
+    "DIR_DATA": "/data",
+    "DIR_ARTIFACTS": "/artifacts"
+  }
+}

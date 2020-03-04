@@ -70,7 +70,7 @@ services:
     build:
       context: ./models/pancreas-segmentor-2d
     volumes:
-        - ./datasetspancreas-segmentor-2d/train:/code/data
+        - ./datasets/pancreas-segmentor-2d/train:/code/data
     ports:
       - "${MODEL_PANCREAS_SEGMENTOR_2D_PORT}:${MODEL_PANCREAS_SEGMENTOR_2D_PORT}"
     networks:
@@ -78,4 +78,16 @@ services:
     environment:
       - MODE=${MODE}
       - WANDB_API_KEY=${WANDB_API_KEY}
+    command: sh -c "python3 index.py"
+
+  processing-ingestion-3d:
+    build:
+      context: ./processing/ingestion-3d
+    volumes:
+        - ./datasets/dev/processing/ingestion-3d:/data
+        - ./artifacts/ingestion-3d:/artifacts
+    ports:
+      - "${PORT_PROCESSING_INGESTION_3D}:${PORT_PROCESSING_INGESTION_3D}"
+    networks:
+      - cancer_network
     command: sh -c "python3 index.py"
