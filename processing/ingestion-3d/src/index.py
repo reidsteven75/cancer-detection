@@ -24,7 +24,6 @@ if __name__ == '__main__':
   raw_files = utils.getFiles(config['common']['DIR_DATA'], config['common']['FILE_EXTENSIONS'])
 
   for f in raw_files:
-    print(f['name'])
     img_3d_data = nib.load(f['path']).get_fdata()
 
     img_3d_array = np.asarray(img_3d_data)
@@ -33,9 +32,7 @@ if __name__ == '__main__':
 
       for current_slice in range(0, total_slices):
         img_2d_data = img_3d_array[:, :, current_slice]
-        print(len(img_2d_data.shape))
         image_name = f['name'][:-4] + '_z' + '{:0>3}'.format(str(current_slice+1)) + '.png'
 
         print('saving 2D image: ' + image_name)
-        print(img_2d_data)
         imageio.imwrite(config['common']['DIR_ARTIFACTS'] + '/' + image_name, img_2d_data)

@@ -8,7 +8,8 @@ import blue from '@material-ui/core/colors/blue'
 import teal from '@material-ui/core/colors/teal'
 
 import Header from './components/header'
-import Viewer from './components/viewer'
+import Viewer2D from './components/viewer-2d'
+import Viewer3D from './components/viewer-3d'
 import NotFound from './components/not-found'
 
 const HTTPS = (process.env.HTTPS === 'true')
@@ -38,9 +39,18 @@ const theme = createMuiTheme({
   },
 })
 
-const viewer = () => {
+const viewer2D = () => {
   return (
-    <Viewer
+    <Viewer2D
+      api={API}
+      features={features}
+    />
+  )
+}
+
+const viewer3D = () => {
+  return (
+    <Viewer3D
       api={API}
       features={features}
     />
@@ -64,8 +74,9 @@ class App extends Component {
             <main className='App-main'>
               
               <Switch>
-                <Route path='/' exact component={viewer} />
-                <Route path='/viewer/' component={viewer} />  
+                <Route path='/' exact component={viewer3D} />
+                <Route path='/viewer/2d' component={viewer2D} />  
+                <Route path='/viewer/3d' component={viewer3D} /> 
                 <Route component={notFound} />   
               </Switch>
 

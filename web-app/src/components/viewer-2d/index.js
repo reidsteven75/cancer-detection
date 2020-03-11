@@ -21,7 +21,7 @@ const style = {
 	}
 }
 
-class Viewer extends Component {
+class Viewer2D extends Component {
 
   constructor(props) {
     super(props)
@@ -151,4 +151,4 @@ class Viewer extends Component {
 export default withRouter(compose(
   withStyles(style),
   withWidth(),
-)(Viewer))
+)(Viewer2D))

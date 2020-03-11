@@ -12,6 +12,7 @@ services:
     restart: always
     volumes:
       - ./web-app:/code
+      - ./datasets/dev/visualization/3d:/code/data
     networks:
       - cancer_network
     ports:
