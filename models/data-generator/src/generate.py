@@ -18,8 +18,11 @@ with open('config.json') as config_file:
   config = json.load(config_file)
 print('~~~~~~~')
 print('CONFIG')
-print(config)
-print('~~~~~~~')
+print(json.dumps(config, indent=2))
+print('~~~~~~~~')
+print('HARDWARE')
+print('# GPU Available: ' + str(torch.cuda.device_count()))
+print('~~~~~~~~')
 
 wandb.init(project='image-generator-tumor-brain')
 manualSeed = 999
@@ -61,7 +64,7 @@ lr = 0.0002
 beta1 = 0.5
 
 # Number of GPUs available. Use 0 for CPU mode.
-ngpu = 0
+ngpu = 1
 
 
 dataset = dset.ImageFolder(root=dataroot,
