@@ -56,6 +56,7 @@ class Viewer2D extends Component {
 			analysisResults: null,
 			analysisError: null
 		}, () => {
+
 			axios({
 				method: 'post',
 				url: this.props.api + '/image/analyze',

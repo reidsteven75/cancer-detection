@@ -27,7 +27,7 @@ random.seed(manualSeed)
 torch.manual_seed(manualSeed)
 
 # Root directory for dataset
-dataroot = "./data/generate"
+dataroot = "./data/benchmarks/generate"
 
 # Number of workers for dataloader
 workers = 2
