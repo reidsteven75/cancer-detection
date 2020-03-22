@@ -56,6 +56,7 @@ services:
   data-generator:
     build:
       context: ./models/data-generator
+    runtime: nvidia
     volumes:
         - ./datasets:/code/data
     ports:
