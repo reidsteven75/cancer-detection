@@ -21,6 +21,7 @@ print('CONFIG')
 print(json.dumps(config, indent=2))
 print('~~~~~~~~')
 print('HARDWARE')
+print('GPU: ' + str(torch.cuda.is_available()))
 print('# GPU Available: ' + str(torch.cuda.device_count()))
 print('~~~~~~~~')
 
