@@ -82,6 +82,23 @@ Docker No Space Left
 `docker rm $(docker ps -q -f 'status=exited')`
 `docker rmi $(docker images -q -f 'dangling=true')`
 
+Dataset Downloads
+---------------------------
+https://www.matthuisman.nz/2019/01/download-google-drive-files-wget-curl.html
+```
+wget -O $filename 'https://docs.google.com/uc?export=download&id=$fileid'
+```
+
+Data Generator
+```
+wget -O img_align_celeba.zip 'https://docs.google.com/uc?export=download&id='
+$ wget --save-cookies cookies.txt 'https://docs.google.com/uc?export=download&id=1ElQ3B5HcIJynrxp1r58cg7UMrJYCwjv2' -O- \
+     | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1/p' > confirm.txt
+
+$ wget --load-cookies cookies.txt -O img_align_celeba.zip \
+     'https://docs.google.com/uc?export=download&id=1ElQ3B5HcIJynrxp1r58cg7UMrJYCwjv2&confirm='$(<confirm.txt)
+```
+
 Environment Variables
 ---------------------
 - set in root .env files
