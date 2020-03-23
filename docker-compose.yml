@@ -12,7 +12,7 @@ services:
     restart: always
     volumes:
       - ./web-app:/code
-      - ./datasets/dev/visualization/3d:/code/data
+      - ./data/dev/visualization/3d:/code/data
     networks:
       - cancer_network
     ports:
@@ -56,15 +56,13 @@ services:
   data-generator:
     build:
       context: ./models/data-generator
-    runtime: nvidia
     volumes:
-        - ./datasets:/code/data
+        - ./data:/code/data
     ports:
       - "${MODEL_DATA_GENERATOR_PORT}:${MODEL_DATA_GENERATOR_PORT}"
     networks:
       - cancer_network
     environment:
-      - MODE=${MODE}
       - WANDB_API_KEY=${WANDB_API_KEY}
     command: sh -c "python3 index.py"
   
@@ -72,7 +70,7 @@ services:
     build:
       context: ./models/pancreas-segmentor-2d
     volumes:
-        - ./datasets/pancreas-segmentor-2d/train:/code/data
+        - ./data/pancreas-segmentor-2d/train:/code/data
     ports:
       - "${MODEL_PANCREAS_SEGMENTOR_2D_PORT}:${MODEL_PANCREAS_SEGMENTOR_2D_PORT}"
     networks:
@@ -86,7 +84,7 @@ services:
     build:
       context: ./processing/ingestion-3d
     volumes:
-        - ./datasets/dev/processing/ingestion-3d:/data
+        - ./data/dev/processing/ingestion-3d:/data
         - ./artifacts/ingestion-3d:/artifacts
     ports:
       - "${PORT_PROCESSING_INGESTION_3D}:${PORT_PROCESSING_INGESTION_3D}"

@@ -20,11 +20,15 @@ print('~~~~~~~')
 print('CONFIG')
 print('------')
 print(json.dumps(config, indent=2))
-print('~~~~~~~~')
+print('~~~')
 print('GPU')
 print('---')
 print('Available: ' + str(torch.cuda.is_available()))
 print('Total #: ' + str(torch.cuda.device_count()))
+print('~~~~')
+print('DATA')
+print('----')
+
 print('~~~~~~~~')
 
 wandb.init(project='image-generator-tumor-brain')
@@ -33,7 +37,7 @@ random.seed(manualSeed)
 torch.manual_seed(manualSeed)
 
 # Root directory for dataset
-dataroot = "./data/benchmarks/generate"
+dataroot = config['generate']['DIR_DATA_GENERATE']
 
 # Number of workers for dataloader
 workers = 2

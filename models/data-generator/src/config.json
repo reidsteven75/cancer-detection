@@ -4,6 +4,6 @@
     "IMG_CHANNELS": 3
   },
   "generate": {
-    "DIR_DATA_GENERATE": "./data/generate"
+    "DIR_DATA_GENERATE": "./data/benchmarks/generate"
   }
 }
