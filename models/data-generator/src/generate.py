@@ -3,6 +3,7 @@ import argparse
 import os
 import random
 import torch
+import time
 import torch.nn as nn
 import torch.nn.parallel
 import torch.backends.cudnn as cudnn
@@ -227,6 +228,8 @@ for epoch in range(num_epochs):
   # For each batch in the dataloader
   for i, data in enumerate(dataloader, 0):
 
+    t0 = time.time()
+
     ############################
     # (1) Update D network: maximize log(D(x)) + log(1 - D(G(z)))
     ###########################
@@ -294,6 +297,7 @@ for epoch in range(num_epochs):
         % (epoch, num_epochs, i, len(dataloader),
           errD.item(), errG.item(), D_x, D_G_z1, D_G_z2))
       wandb.log({
+        'Batch Time': time.time() - t0,
         'Loss Discriminator': errD.item(), 
         'Loss Generator': errG.item(),
         'Real Images: D(x)': D_x,
