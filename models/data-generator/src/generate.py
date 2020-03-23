@@ -16,7 +16,7 @@ import numpy as np
 
 with open('config.json') as config_file:
   config = json.load(config_file)
-print('~~~~~~~')
+print('~~~~~~')
 print('CONFIG')
 print('------')
 print(json.dumps(config, indent=2))
@@ -28,16 +28,19 @@ print('Total #: ' + str(torch.cuda.device_count()))
 print('~~~~')
 print('DATA')
 print('----')
-
+# Root directory for dataset
+dataroot = config['generate']['DIR_DATA_GENERATE']
+class_paths = [ f.path for f in os.scandir(dataroot) if f.is_dir() ]
+for class_path in class_paths:
+  path, dirs, files = next(os.walk(class_path))
+  file_count = len(files)
+  print(os.path.basename(class_path) + ': ' + f'{file_count:,}' + ' images')
 print('~~~~~~~~')
 
 wandb.init(project='image-generator-tumor-brain')
 manualSeed = 999
 random.seed(manualSeed)
 torch.manual_seed(manualSeed)
-
-# Root directory for dataset
-dataroot = config['generate']['DIR_DATA_GENERATE']
 
 # Number of workers for dataloader
 workers = 2
