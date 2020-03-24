@@ -66,10 +66,10 @@ ngf = 64
 ndf = 64
 
 # Number of training epochs
-num_epochs = 5
+num_epochs = 50
 
 # Learning rate for optimizers
-lr = 0.00001
+lr = 0.0001
 
 # Beta1 hyperparam for Adam optimizers
 beta1 = 0.5
