@@ -16,11 +16,11 @@ import wandb
 import numpy as np
 
 with open('config.json') as config_file:
-  config = json.load(config_file)
+  config_code = json.load(config_file)
 print('~~~~~~')
 print('CONFIG')
 print('------')
-print(json.dumps(config, indent=2))
+print(json.dumps(config_code, indent=2))
 print('~~~')
 print('GPU')
 print('---')
@@ -30,15 +30,24 @@ print('~~~~')
 print('DATA')
 print('----')
 # Root directory for dataset
-dataroot = config['generate']['DIR_DATA_GENERATE']
+dataroot = config_code['generate']['DIR_DATA_GENERATE']
 class_paths = [ f.path for f in os.scandir(dataroot) if f.is_dir() ]
 for class_path in class_paths:
   path, dirs, files = next(os.walk(class_path))
   file_count = len(files)
   print(os.path.basename(class_path) + ': ' + f'{file_count:,}' + ' images')
-print('~~~~~~~~')
 
-wandb.init(project='image-generator')
+
+hyperparameter_defaults = dict(
+  learning_rate = 0.0002,
+)
+wandb.init(config=hyperparameter_defaults, project='image-generator')
+config_wandb = wandb.config
+print('~~~~~~~~~~~~~~~')
+print('HYPERPARAMETERS')
+print('---------------')
+print('Learning Rate: ' + config_wandb['learning_rate'])
+print('~~~~~~~~')
 manualSeed = 999
 random.seed(manualSeed)
 torch.manual_seed(manualSeed)
@@ -66,10 +75,10 @@ ngf = 64
 ndf = 64
 
 # Number of training epochs
-num_epochs = 50
+num_epochs = 20
 
 # Learning rate for optimizers
-lr = 0.0002
+lr = config_wandb['learning_rate']
 
 # Beta1 hyperparam for Adam optimizers
 beta1 = 0.5
