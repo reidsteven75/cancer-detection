@@ -38,7 +38,7 @@ for class_path in class_paths:
   print(os.path.basename(class_path) + ': ' + f'{file_count:,}' + ' images')
 print('~~~~~~~~')
 
-wandb.init(project='image-generator-tumor-brain')
+wandb.init(project='image-generator')
 manualSeed = 999
 random.seed(manualSeed)
 torch.manual_seed(manualSeed)
@@ -297,12 +297,12 @@ for epoch in range(num_epochs):
         % (epoch, num_epochs, i, len(dataloader),
           errD.item(), errG.item(), D_x, D_G_z1, D_G_z2))
       wandb.log({
-        'Batch Time': time.time() - t0,
-        'Loss Discriminator': errD.item(), 
-        'Loss Generator': errG.item(),
-        'Real Images: D(x)': D_x,
-        'Generated Images: D(G(z))': D_G_z1 / D_G_z2,
-        'Generated Images': [wandb.Image(img_list[-1], caption="Brain")]
+        'batch_time': time.time() - t0,
+        'loss_discriminator': errD.item(), 
+        'loss_generator': errG.item(),
+        'real_images_D(x)': D_x,
+        'generated_images_D(G(z))': D_G_z1 / D_G_z2,
+        'generated_images': [wandb.Image(img_list[-1], caption="Brain")]
       })
 
     iters += 1
