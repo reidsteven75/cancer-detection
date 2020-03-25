@@ -46,7 +46,7 @@ config_wandb = wandb.config
 print('~~~~~~~~~~~~~~~')
 print('HYPERPARAMETERS')
 print('---------------')
-print('Learning Rate: ' + config_wandb['learning_rate'])
+print('Learning Rate: ' + str(config_wandb['learning_rate']))
 print('~~~~~~~~')
 manualSeed = 999
 random.seed(manualSeed)
