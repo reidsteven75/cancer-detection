@@ -4,6 +4,19 @@ networks:
     driver: bridge
 
 services:
+
+  processing-histogram:
+    build:
+      context: ./processing/histogram
+    volumes:
+        - ./data/raw/covid-19/ultrasound/1-yale-tung-chen/timelapse/max-brightness-l/images:/data
+        - ./artifacts/histogram:/artifacts
+    ports:
+      - "${PORT_PROCESSING_HISTOGRAM}:${PORT_PROCESSING_HISTOGRAM}"
+    networks:
+      - cancer_network
+    command: sh -c "python3 index.py"
+
   web-app:
     env_file: .env
     build:

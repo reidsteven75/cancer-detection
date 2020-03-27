@@ -107,3 +107,11 @@ Environment Variables
   - client/webpack.*.js files
   - client/App.js
   - server/server.js
+
+
+3rd Party Tools
+--------------
+- [GIF Maker](https://gifmaker.me/)
+- [Video Image Screenshot](https://www.jeffgeerling.com/blogs/jeff-geerling/grab-single-frame-video)
+- [Mac GIF Player](https://support.apple.com/en-ca/guide/mac-help/mh14119/mac)
+- [GIF Cropper](https://ezgif.com/crop/ezgif-4-a09b4ff3f7f8.gif)

@@ -40,6 +40,7 @@ for class_path in class_paths:
 
 hyperparameter_defaults = dict(
   learning_rate = 0.0002,
+  epochs = 40
 )
 wandb.init(config=hyperparameter_defaults, project='image-generator')
 config_wandb = wandb.config
@@ -47,6 +48,7 @@ print('~~~~~~~~~~~~~~~')
 print('HYPERPARAMETERS')
 print('---------------')
 print('Learning Rate: ' + str(config_wandb['learning_rate']))
+print('Epochs: ' + str(config_wandb['epochs']))
 print('~~~~~~~~')
 manualSeed = 999
 random.seed(manualSeed)
@@ -75,7 +77,7 @@ ngf = 64
 ndf = 64
 
 # Number of training epochs
-num_epochs = 20
+num_epochs = config_wandb['epochs']
 
 # Learning rate for optimizers
 lr = config_wandb['learning_rate']
