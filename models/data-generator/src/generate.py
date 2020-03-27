@@ -48,7 +48,7 @@ print('~~~~~~~~~~~~~~~')
 print('HYPERPARAMETERS')
 print('---------------')
 print('Learning Rate: ' + str(config_wandb['learning_rate']))
-print('Epochs: ' + str(config_wandb['epochs']))
+print('Epochs: ' + str(round(config_wandb['epochs'])))
 print('~~~~~~~~')
 manualSeed = 999
 random.seed(manualSeed)
@@ -77,7 +77,7 @@ ngf = 64
 ndf = 64
 
 # Number of training epochs
-num_epochs = config_wandb['epochs']
+num_epochs = round(config_wandb['epochs'])
 
 # Learning rate for optimizers
 lr = config_wandb['learning_rate']
