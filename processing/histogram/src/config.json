@@ -1,7 +1,19 @@
 {
-  "common": {
+  "COMMON": {
     "FILE_EXTENSIONS": [".png"],
     "DIR_DATA": "/data",
     "DIR_ARTIFACTS": "/artifacts"
+  },
+  "HISTOGRAM": {
+    "CHANNEL_1": {
+      "RANGE": [0, 255]
+    },
+    "CHANNEL_2": {
+      "RANGE": [256, 511]
+    },
+    "CHANNEL_3": {
+      "RANGE": [512, 767]
+    },
+    "SPIKES": [0, 256, 257, 512, 513]
   }
 }

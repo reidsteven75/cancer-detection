@@ -9,7 +9,7 @@ services:
     build:
       context: ./processing/histogram
     volumes:
-        - ./data/raw/covid-19/ultrasound/1-yale-tung-chen/timelapse/max-brightness-l/images:/data
+        - ./data/raw/covid-19/ultrasound/1-yale-tung-chen/timelapse/combined/images:/data
         - ./artifacts/histogram:/artifacts
     ports:
       - "${PORT_PROCESSING_HISTOGRAM}:${PORT_PROCESSING_HISTOGRAM}"
@@ -67,6 +67,7 @@ services:
     command: sh -c "python3 index.py"
   
   data-generator:
+    runtime: nvidia
     build:
       context: ./models/data-generator
     volumes:
