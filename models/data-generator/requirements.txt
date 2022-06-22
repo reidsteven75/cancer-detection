@@ -2,4 +2,4 @@ tabulate==0.8.6
 tqdm==4.40.1
 imageio==2.6.1
 wandb==0.8.28
-numpy==1.17.3
+numpy==1.22.0
